@@ -1275,12 +1275,12 @@ function spawnStars() {
   stars2.push({
     x: 30 + Math.random() * (gc.width - 60),
     y: -30,
-    vy: 1.5 + Math.random() * 2.5,
-    size: 24 + Math.random() * 16,
+    vy: 0.6 + Math.random() * 0.8,
+    size: 40 + Math.random() * 20,
     emoji: emojis2[Math.floor(Math.random()*emojis2.length)],
     hit: false, alpha: 1
   });
-  setTimeout(spawnStars, 600 + Math.random() * 600);
+  setTimeout(spawnStars, 1200 + Math.random() * 600);
 }
 
 function drawGame() {
@@ -1288,7 +1288,7 @@ function drawGame() {
   gctx.clearRect(0, 0, gc.width, gc.height);
 
   // bg
-  gctx.fillStyle = 'rgba(26,10,46,0.95)';
+  gctx.fillStyle = 'rgba(26,10,46,0.7)';
   gctx.fillRect(0, 0, gc.width, gc.height);
 
   // grid dots
@@ -1308,7 +1308,10 @@ function drawGame() {
     gctx.globalAlpha = s.alpha;
     gctx.font = s.size + 'px serif';
     gctx.textAlign = 'center';
+    gctx.shadowColor = 'rgba(255, 255, 100, 0.9)';
+    gctx.shadowBlur = 20;
     gctx.fillText(s.emoji, s.x, s.y);
+    gctx.shadowBlur = 0;
     gctx.globalAlpha = 1;
   });
 
