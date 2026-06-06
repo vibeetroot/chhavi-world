@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✨ Chhavi's Magical World ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=IM+Fell+English:ital@0;1&family=JetBrains+Mono:wght@300;400;600&family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #f4a7c3;
+    --lavender: #c9a7f4;
+    --mint: #a7f4d4;
+    --peach: #f4cfa7;
+    --sky: #a7d4f4;
+    --gold: #f4e4a7;
+    --cream: #fdf6ff;
+    --deep: #2d1b4e;
+    --ink: #1a0a2e;
+    --glow: rgba(201,167,244,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 30%, #1e0f3a 60%, #0d0820 100%);
+    min-height: 100vh;
+    font-family: 'Quicksand', sans-serif;
+    color: var(--cream);
+    overflow-x: hidden;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ctext y='18' font-size='18'%3E✨%3C/text%3E%3C/svg%3E"), auto;
+  }
+
+  /* ─── STARS CANVAS ─── */
+  #stars-canvas {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ─── FLOATING PARTICLES ─── */
+  .particle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1;
+    font-size: 1.2rem;
+    animation: floatUp 6s linear infinite;
+    opacity: 0;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0.7; }
+    100% { transform: translateY(-20vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* ─── CURSOR TRAIL ─── */
+  .trail-dot {
+    position: fixed;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.1s ease;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; width: 100%;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(26,10,46,0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201,167,244,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.1rem;
+    background: linear-gradient(90deg, var(--rose), var(--lavender), var(--mint));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(253,246,255,0.7);
+    text-decoration: none; font-size: 0.85rem;
+    letter-spacing: 1px; font-weight: 600;
+    transition: all 0.3s;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .nav-links a:hover { color: var(--lavender); text-shadow: 0 0 20px var(--lavender); }
+
+  /* ─── SECTIONS ─── */
+  section { position: relative; z-index: 2; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center; padding: 6rem 2rem 4rem;
+  }
+
+  .hero-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 3px;
+    color: var(--mint); margin-bottom: 1.5rem;
+    border: 1px solid rgba(167,244,212,0.3);
+    padding: 0.4rem 1.2rem; border-radius: 100px;
+    background: rgba(167,244,212,0.05);
+  }
+
+  .hero-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--rose) 0%, var(--lavender) 40%, var(--sky) 70%, var(--mint) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    margin-bottom: 0.5rem;
+    animation: nameGlow 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes nameGlow {
+    from { filter: drop-shadow(0 0 20px rgba(201,167,244,0.5)); }
+    to { filter: drop-shadow(0 0 40px rgba(244,167,195,0.8)); }
+  }
+
+  .hero-tagline {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.6rem);
+    color: rgba(253,246,255,0.75);
+    margin-bottom: 2.5rem;
+    letter-spacing: 1px;
+  }
+
+  .hero-pills {
+    display: flex; flex-wrap: wrap; gap: 0.8rem;
+    justify-content: center; margin-bottom: 3rem;
+  }
+
+  .pill {
+    padding: 0.5rem 1.2rem; border-radius: 100px;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;
+    border: 1px solid; cursor: pointer;
+    transition: all 0.3s; font-family: 'JetBrains Mono', monospace;
+    animation: pillFloat 3s ease-in-out infinite;
+  }
+  .pill:nth-child(odd) { animation-direction: alternate; }
+
+  @keyframes pillFloat {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+
+  .pill-rose { border-color: var(--rose); color: var(--rose); background: rgba(244,167,195,0.1); }
+  .pill-lav  { border-color: var(--lavender); color: var(--lavender); background: rgba(201,167,244,0.1); }
+  .pill-mint { border-color: var(--mint); color: var(--mint); background: rgba(167,244,212,0.1); }
+  .pill-gold { border-color: var(--gold); color: var(--gold); background: rgba(244,228,167,0.1); }
+  .pill-sky  { border-color: var(--sky); color: var(--sky); background: rgba(167,212,244,0.1); }
+  .pill:hover { transform: translateY(-8px) scale(1.05) !important; box-shadow: 0 10px 30px rgba(201,167,244,0.3); }
+
+  .scroll-hint {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 3px;
+    color: rgba(253,246,255,0.3);
+    animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce { 0%,100%{transform:translateY(0)}50%{transform:translateY(8px)} }
+
+  /* ─── SECTION TITLE ─── */
+  .section-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    text-align: center; margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, var(--rose), var(--lavender));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .section-sub {
+    text-align: center; font-family: 'IM Fell English', serif;
+    font-style: italic; color: rgba(253,246,255,0.5);
+    margin-bottom: 3rem; font-size: 1rem;
+  }
+
+  /* ─── ABOUT ─── */
+  #about { padding: 6rem 2rem; }
+
+  .about-grid {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+
+  .about-card {
+    background: rgba(201,167,244,0.05);
+    border: 1px solid rgba(201,167,244,0.15);
+    border-radius: 20px; padding: 2rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.4s;
+    position: relative; overflow: hidden;
+  }
+  .about-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(201,167,244,0.05));
+    transition: opacity 0.4s;
+  }
+  .about-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(201,167,244,0.4);
+    box-shadow: 0 20px 60px rgba(201,167,244,0.15);
+  }
+  .about-card.wide { grid-column: 1/-1; }
+
+  .card-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .card-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.9rem; letter-spacing: 2px;
+    color: var(--lavender); margin-bottom: 0.8rem;
+  }
+  .card-body {
+    font-family: 'IM Fell English', serif;
+    font-size: 1rem; line-height: 1.8;
+    color: rgba(253,246,255,0.8);
+  }
+  .card-body code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem; color: var(--mint);
+    background: rgba(167,244,212,0.1);
+    padding: 0.1rem 0.4rem; border-radius: 4px;
+  }
+
+  /* ─── STICKER PLAYGROUND ─── */
+  #playground {
+    padding: 6rem 2rem;
+    min-height: 600px;
+  }
+
+  #sticker-board {
+    max-width: 900px; margin: 0 auto;
+    height: 500px;
+    background: rgba(255,255,255,0.03);
+    border: 2px dashed rgba(201,167,244,0.2);
+    border-radius: 24px;
+    position: relative; overflow: hidden;
+    cursor: crosshair;
+  }
+
+  .sticker-hint {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; pointer-events: none;
+    opacity: 0.4;
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+  }
+
+  .sticker-bar {
+    max-width: 900px; margin: 1.5rem auto 0;
+    display: flex; flex-wrap: wrap; gap: 0.8rem;
+    justify-content: center;
+  }
+  .sticker-btn {
+    font-size: 1.5rem; padding: 0.5rem 0.8rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .sticker-btn:hover { transform: scale(1.2) rotate(10deg); background: rgba(201,167,244,0.1); }
+
+  .sticker-btn.active { border-color: var(--lavender); background: rgba(201,167,244,0.15); }
+
+  .draggable-sticker {
+    position: absolute;
+    font-size: 2rem;
+    cursor: grab;
+    user-select: none;
+    transition: transform 0.1s;
+    z-index: 10;
+    animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .draggable-sticker:active { cursor: grabbing; transform: scale(1.3) rotate(15deg); }
+  @keyframes popIn { from{transform:scale(0)rotate(-20deg)} to{transform:scale(1)rotate(0)} }
+
+  .board-controls {
+    max-width: 900px; margin: 1rem auto 0;
+    display: flex; gap: 1rem; justify-content: center;
+  }
+  .ctrl-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 1px;
+    padding: 0.5rem 1.2rem; border-radius: 100px;
+    border: 1px solid rgba(244,167,195,0.3);
+    background: rgba(244,167,195,0.05);
+    color: var(--rose); cursor: pointer;
+    transition: all 0.3s;
+  }
+  .ctrl-btn:hover { background: rgba(244,167,195,0.15); transform: scale(1.05); }
+
+  /* ─── SPELL GENERATOR ─── */
+  #spells { padding: 6rem 2rem; }
+
+  .spell-machine {
+    max-width: 700px; margin: 0 auto;
+    background: rgba(201,167,244,0.05);
+    border: 1px solid rgba(201,167,244,0.2);
+    border-radius: 24px; padding: 3rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+
+  #spell-display {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    min-height: 120px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(26,10,46,0.5);
+    border-radius: 16px; padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(244,228,167,0.2);
+    color: var(--gold);
+    transition: all 0.5s;
+    line-height: 1.5;
+  }
+
+  .spell-type-btns {
+    display: flex; flex-wrap: wrap; gap: 0.8rem;
+    justify-content: center; margin-bottom: 1.5rem;
+  }
+  .spell-type-btn {
+    padding: 0.5rem 1.2rem; border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 1px;
+    border: 1px solid rgba(201,167,244,0.3);
+    background: rgba(201,167,244,0.05);
+    color: var(--lavender); cursor: pointer;
+    transition: all 0.3s;
+  }
+  .spell-type-btn.active, .spell-type-btn:hover {
+    background: rgba(201,167,244,0.2);
+    border-color: var(--lavender);
+    transform: scale(1.05);
+  }
+
+  .cast-btn {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1rem; letter-spacing: 2px;
+    padding: 1rem 3rem; border-radius: 100px;
+    background: linear-gradient(135deg, var(--rose), var(--lavender));
+    border: none; color: var(--ink);
+    cursor: pointer; font-weight: 700;
+    transition: all 0.3s;
+    box-shadow: 0 0 30px rgba(201,167,244,0.3);
+  }
+  .cast-btn:hover { transform: scale(1.05); box-shadow: 0 0 50px rgba(201,167,244,0.6); }
+  .cast-btn:active { transform: scale(0.97); }
+
+  /* ─── POEM GENERATOR ─── */
+  #poems { padding: 6rem 2rem; }
+
+  .poem-machine {
+    max-width: 700px; margin: 0 auto;
+  }
+
+  .poem-input-row {
+    display: flex; gap: 1rem; margin-bottom: 1.5rem;
+  }
+  .poem-input {
+    flex: 1; background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,167,244,0.2);
+    border-radius: 12px; padding: 1rem 1.5rem;
+    color: var(--cream); font-family: 'Quicksand', sans-serif;
+    font-size: 1rem; outline: none;
+    transition: border-color 0.3s;
+  }
+  .poem-input:focus { border-color: var(--lavender); }
+  .poem-input::placeholder { color: rgba(253,246,255,0.3); }
+
+  .poem-gen-btn {
+    padding: 1rem 2rem; border-radius: 12px;
+    background: linear-gradient(135deg, var(--lavender), var(--sky));
+    border: none; color: var(--ink);
+    cursor: pointer; font-family: 'Cinzel Decorative', serif;
+    font-size: 0.85rem; font-weight: 700;
+    white-space: nowrap; transition: all 0.3s;
+  }
+  .poem-gen-btn:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(167,212,244,0.3); }
+
+  #poem-output {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,167,244,0.15);
+    border-radius: 16px; padding: 2rem;
+    font-family: 'IM Fell English', serif;
+    font-style: italic; font-size: 1.1rem;
+    line-height: 2; color: rgba(253,246,255,0.85);
+    min-height: 200px;
+    transition: all 0.5s;
+    position: relative; overflow: hidden;
+  }
+
+  /* ─── MINI GAME ─── */
+  #game { padding: 6rem 2rem; }
+
+  .game-container {
+    max-width: 600px; margin: 0 auto; text-align: center;
+  }
+
+  #game-canvas {
+    width: 100%; max-width: 500px; height: 350px;
+    background: rgba(26,10,46,0.8);
+    border: 2px solid rgba(201,167,244,0.3);
+    border-radius: 20px;
+    cursor: crosshair;
+    display: block; margin: 0 auto 1.5rem;
+  }
+
+  .game-stats {
+    display: flex; gap: 2rem; justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .stat-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem; letter-spacing: 1px;
+    padding: 0.5rem 1.2rem; border-radius: 100px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .game-start-btn {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.9rem; letter-spacing: 2px;
+    padding: 0.8rem 2.5rem; border-radius: 100px;
+    background: linear-gradient(135deg, var(--mint), var(--sky));
+    border: none; color: var(--ink);
+    cursor: pointer; font-weight: 700;
+    transition: all 0.3s;
+  }
+  .game-start-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(167,244,212,0.4); }
+
+  /* ─── HOUSE QUIZ ─── */
+  #quiz { padding: 6rem 2rem; }
+
+  .quiz-container {
+    max-width: 650px; margin: 0 auto;
+    text-align: center;
+  }
+
+  .quiz-question {
+    font-family: 'IM Fell English', serif;
+    font-size: 1.3rem; font-style: italic;
+    color: var(--gold); margin-bottom: 2rem;
+    min-height: 60px;
+    transition: all 0.4s;
+  }
+
+  .quiz-options {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-bottom: 2rem;
+  }
+  .quiz-opt {
+    padding: 1rem 1.5rem; border-radius: 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--cream); cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95rem; font-weight: 600;
+    transition: all 0.3s;
+    text-align: left;
+  }
+  .quiz-opt:hover {
+    background: rgba(201,167,244,0.1);
+    border-color: var(--lavender);
+    transform: scale(1.02);
+  }
+
+  .quiz-result {
+    display: none;
+    background: rgba(201,167,244,0.08);
+    border: 1px solid rgba(201,167,244,0.3);
+    border-radius: 20px; padding: 2rem;
+  }
+  .house-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 2rem; margin-bottom: 0.5rem;
+  }
+  .house-desc {
+    font-family: 'IM Fell English', serif;
+    font-style: italic; font-size: 1rem;
+    color: rgba(253,246,255,0.75);
+    line-height: 1.8;
+  }
+
+  /* ─── COLOR MIXER ─── */
+  #mixer { padding: 6rem 2rem; }
+
+  .mixer-container {
+    max-width: 700px; margin: 0 auto;
+  }
+
+  .color-preview {
+    height: 200px; border-radius: 20px;
+    margin-bottom: 2rem;
+    transition: all 0.5s;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255,255,255,0.1);
+    position: relative; overflow: hidden;
+  }
+
+  .color-preview-text {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.2rem; color: rgba(255,255,255,0.9);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    z-index: 2;
+  }
+
+  .sliders-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; margin-bottom: 2rem;
+  }
+  .slider-row label {
+    display: block; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem; letter-spacing: 1px;
+    color: rgba(253,246,255,0.6); margin-bottom: 0.5rem;
+  }
+  input[type=range] {
+    width: 100%; -webkit-appearance: none;
+    height: 6px; border-radius: 3px;
+    outline: none; cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--lavender); cursor: pointer;
+    box-shadow: 0 0 10px rgba(201,167,244,0.5);
+  }
+
+  .palette-row {
+    display: flex; gap: 0.8rem; flex-wrap: wrap;
+  }
+  .palette-swatch {
+    width: 48px; height: 48px; border-radius: 12px;
+    cursor: pointer; transition: all 0.3s;
+    border: 2px solid transparent;
+  }
+  .palette-swatch:hover { transform: scale(1.2); border-color: white; }
+
+  /* ─── SKILLS ORBIT ─── */
+  #skills-section { padding: 6rem 2rem; }
+
+  .orbit-container {
+    position: relative; width: 400px; height: 400px;
+    margin: 0 auto;
+  }
+
+  .orbit-center {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100px; height: 100px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--rose), var(--lavender));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.7rem; text-align: center;
+    color: var(--ink); font-weight: 700;
+    box-shadow: 0 0 40px rgba(201,167,244,0.5);
+    z-index: 10;
+  }
+
+  .orbit-ring {
+    position: absolute; top: 50%; left: 50%;
+    border-radius: 50%;
+    border: 1px solid rgba(201,167,244,0.15);
+    transform-origin: center;
+  }
+
+  .orbit-item {
+    position: absolute;
+    display: flex; flex-direction: column; align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  .orbit-item:hover { transform: scale(1.3) !important; }
+  .orbit-icon { font-size: 1.8rem; }
+  .orbit-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 1px;
+    color: rgba(253,246,255,0.6);
+    white-space: nowrap;
+    margin-top: 0.3rem;
+  }
+
+  /* ─── TYPEWRITER SECTION ─── */
+  #typewriter-section { padding: 6rem 2rem; text-align: center; }
+
+  #typewriter-output {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(1rem, 2.5vw, 1.8rem);
+    color: var(--mint);
+    min-height: 3rem;
+    margin: 2rem 0;
+    text-shadow: 0 0 20px rgba(167,244,212,0.5);
+  }
+
+  .cursor-blink {
+    display: inline-block; width: 3px; height: 1.2em;
+    background: var(--mint); vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1}50%{opacity:0} }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 3rem 2rem; text-align: center;
+    border-top: 1px solid rgba(201,167,244,0.1);
+    position: relative; z-index: 2;
+  }
+  .footer-text {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    color: rgba(253,246,255,0.4); font-size: 0.95rem;
+  }
+
+  /* ─── MAGIC CLICK BURST ─── */
+  .click-burst {
+    position: fixed; pointer-events: none; z-index: 9999;
+    font-size: 1.5rem;
+    animation: burstOut 0.6s ease-out forwards;
+  }
+  @keyframes burstOut {
+    0% { transform: translate(-50%,-50%) scale(0); opacity: 1; }
+    100% { transform: translate(-50%,-120%) scale(1.5); opacity: 0; }
+  }
+
+  /* ─── GLOWING DIVIDER ─── */
+  .glow-divider {
+    width: 100px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--lavender), transparent);
+    margin: 0 auto 3rem;
+    box-shadow: 0 0 20px rgba(201,167,244,0.5);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .about-card.wide { grid-column: 1; }
+    .quiz-options { grid-template-columns: 1fr; }
+    .sliders-grid { grid-template-columns: 1fr; }
+    .orbit-container { width: 280px; height: 280px; transform: scale(0.8); transform-origin: top center; }
+    .poem-input-row { flex-direction: column; }
+    nav { padding: 0.8rem 1rem; }
+    .nav-links { gap: 1rem; }
+  }
+
+  /* Loading screen */
+  #loading {
+    position: fixed; inset: 0; z-index: 10000;
+    background: var(--ink);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    transition: opacity 0.8s ease;
+  }
+  .loading-wand {
+    font-size: 4rem;
+    animation: wandSpin 1s linear infinite;
+  }
+  @keyframes wandSpin { from{transform:rotate(0deg)}to{transform:rotate(360deg)} }
+  .loading-text {
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--lavender); margin-top: 1rem;
+    font-size: 1rem; letter-spacing: 3px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Loading -->
+<div id="loading">
+  <div class="loading-wand">🪄</div>
+  <div class="loading-text">Summoning the magic...</div>
+</div>
+
+<!-- Stars Canvas -->
+<canvas id="stars-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">✨ C H H A V I</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#playground">Play</a></li>
+    <li><a href="#spells">Spells</a></li>
+    <li><a href="#quiz">House</a></li>
+    <li><a href="#skills-section">Skills</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-badge">✦ B.TECH · ML/AI · GSSOC '26 ✦</div>
+  <h1 class="hero-name">Chhavi</h1>
+  <p class="hero-tagline">"where code meets poetry and circuits dream in starlight"</p>
+  <div class="hero-pills">
+    <span class="pill pill-rose">🌸 Builder</span>
+    <span class="pill pill-lav">🔮 ML Explorer</span>
+    <span class="pill pill-mint">🐍 Python Witch</span>
+    <span class="pill pill-gold">⚡ Open Source</span>
+    <span class="pill pill-sky">🌙 Dreamer</span>
+    <span class="pill pill-rose">🪄 GSSoC '26</span>
+    <span class="pill pill-lav">📖 Poetic Coder</span>
+    <span class="pill pill-mint">⚙️ MNIT Jaipur</span>
+  </div>
+  <div class="scroll-hint">✦ scroll to enter my world ✦</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2 class="section-title">✦ Who Am I ✦</h2>
+  <p class="section-sub">a wanderer between worlds — engineering, art, and magic</p>
+  <div class="glow-divider"></div>
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="card-icon">🏛️</div>
+      <div class="card-title">The Scholar</div>
+      <div class="card-body">2nd year B.Tech at <code>MNIT Jaipur</code>, officially Mechanical but my heart lives in <code>ML & AI</code>. I debug at midnight and commit at dawn.</div>
+    </div>
+    <div class="about-card">
+      <div class="card-icon">🔮</div>
+      <div class="card-title">The Maker</div>
+      <div class="card-body">I build things: <code>GradeScope</code> (ensemble ML), face mask detectors (CNN + OpenCV), news summarizer agents (ASI:One). If it can be coded, it can be conjured.</div>
+    </div>
+    <div class="about-card">
+      <div class="card-icon">🌟</div>
+      <div class="card-title">The Contributor</div>
+      <div class="card-body">Active <code>GSSoC '26</code> contributor — fixing bugs, shipping features, leaving every repo a little more magical than I found it.</div>
+    </div>
+    <div class="about-card">
+      <div class="card-icon">🌙</div>
+      <div class="card-title">The Poet</div>
+      <div class="card-body">Code is just poetry with semicolons. I find beauty in recursion, elegance in a clean function, and wonder in every new model I study.</div>
+    </div>
+    <div class="about-card wide">
+      <div class="card-icon">✨</div>
+      <div class="card-title">The Magic</div>
+      <div class="card-body">I am building a future at the intersection of intelligence and imagination — where neural networks whisper and transformers dream. <em>Mischief managed.</em> 🗺️</div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPEWRITER -->
+<section id="typewriter-section">
+  <div class="glow-divider"></div>
+  <p style="font-family:'IM Fell English',serif;font-style:italic;color:rgba(253,246,255,0.5);margin-bottom:1rem;">she is many things...</p>
+  <div id="typewriter-output"><span id="typed-text"></span><span class="cursor-blink"></span></div>
+</section>
+
+<!-- STICKER PLAYGROUND -->
+<section id="playground">
+  <h2 class="section-title">✦ Sticker Playground ✦</h2>
+  <p class="section-sub">drag stickers around · click the board to place · make it yours</p>
+  <div class="glow-divider"></div>
+
+  <div id="sticker-board">
+    <div class="sticker-hint">
+      <div style="font-size:2rem;margin-bottom:0.5rem;">🎨</div>
+      <div style="font-family:'IM Fell English',serif;font-style:italic;color:rgba(253,246,255,0.4);">Click to place stickers · drag to move them</div>
+    </div>
+  </div>
+
+  <div class="sticker-bar" id="sticker-bar">
+    <button class="sticker-btn active" data-emoji="✨">✨</button>
+    <button class="sticker-btn" data-emoji="🦋">🦋</button>
+    <button class="sticker-btn" data-emoji="🌙">🌙</button>
+    <button class="sticker-btn" data-emoji="⭐">⭐</button>
+    <button class="sticker-btn" data-emoji="🪄">🪄</button>
+    <button class="sticker-btn" data-emoji="🔮">🔮</button>
+    <button class="sticker-btn" data-emoji="🌸">🌸</button>
+    <button class="sticker-btn" data-emoji="💻">💻</button>
+    <button class="sticker-btn" data-emoji="🐍">🐍</button>
+    <button class="sticker-btn" data-emoji="🧠">🧠</button>
+    <button class="sticker-btn" data-emoji="🌿">🌿</button>
+    <button class="sticker-btn" data-emoji="💜">💜</button>
+    <button class="sticker-btn" data-emoji="🦉">🦉</button>
+    <button class="sticker-btn" data-emoji="📖">📖</button>
+    <button class="sticker-btn" data-emoji="⚡">⚡</button>
+  </div>
+  <div class="board-controls">
+    <button class="ctrl-btn" id="clear-board">🗑 Clear Board</button>
+    <button class="ctrl-btn" id="random-fill">🎲 Random Fill</button>
+    <button class="ctrl-btn" id="save-board">💾 Save as Image</button>
+  </div>
+</section>
+
+<!-- SPELL GENERATOR -->
+<section id="spells">
+  <h2 class="section-title">✦ Spell Generator ✦</h2>
+  <p class="section-sub">cast spells that describe your code, your life, your magic</p>
+  <div class="glow-divider"></div>
+
+  <div class="spell-machine">
+    <div id="spell-display">Choose a type and cast your spell ✨</div>
+    <div class="spell-type-btns">
+      <button class="spell-type-btn active" data-type="code">💻 Code Spell</button>
+      <button class="spell-type-btn" data-type="life">🌙 Life Spell</button>
+      <button class="spell-type-btn" data-type="hp">🪄 HP Spell</button>
+      <button class="spell-type-btn" data-type="affirmation">💜 Affirmation</button>
+    </div>
+    <button class="cast-btn" id="cast-spell">🪄 Cast Spell</button>
+  </div>
+</section>
+
+<!-- POEM GENERATOR -->
+<section id="poems">
+  <h2 class="section-title">✦ Poem Generator ✦</h2>
+  <p class="section-sub">type any word · receive a tiny magical poem</p>
+  <div class="glow-divider"></div>
+
+  <div class="poem-machine">
+    <div class="poem-input-row">
+      <input class="poem-input" id="poem-input" placeholder="type a word... (moon, code, chai, dreams)" />
+      <button class="poem-gen-btn" id="gen-poem">✦ Write</button>
+    </div>
+    <div id="poem-output">
+      <span style="color:rgba(253,246,255,0.3);font-size:0.9rem;">your poem will appear here, like magic...</span>
+    </div>
+  </div>
+</section>
+
+<!-- MINI GAME: CATCH THE STARS -->
+<section id="game">
+  <h2 class="section-title">✦ Catch the Stars ✦</h2>
+  <p class="section-sub">click the falling stars before they vanish · earn magical points</p>
+  <div class="glow-divider"></div>
+
+  <div class="game-container">
+    <div class="game-stats">
+      <span class="stat-badge">⭐ Score: <span id="score">0</span></span>
+      <span class="stat-badge">⏱ Time: <span id="timer">30</span>s</span>
+      <span class="stat-badge">🎯 Best: <span id="best">0</span></span>
+    </div>
+    <canvas id="game-canvas" width="500" height="350"></canvas>
+    <button class="game-start-btn" id="start-game">🌟 Start Game</button>
+  </div>
+</section>
+
+<!-- HOUSE QUIZ -->
+<section id="quiz">
+  <h2 class="section-title">✦ Which House Are You? ✦</h2>
+  <p class="section-sub">answer honestly · the Sorting Hat never lies</p>
+  <div class="glow-divider"></div>
+
+  <div class="quiz-container">
+    <div id="quiz-progress" style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:rgba(253,246,255,0.4);margin-bottom:1rem;letter-spacing:2px;"></div>
+    <div class="quiz-question" id="quiz-question">Press Start to begin the Sorting Ceremony</div>
+    <div class="quiz-options" id="quiz-options">
+      <button class="quiz-opt" onclick="startQuiz()" style="grid-column:1/-1;text-align:center;background:rgba(201,167,244,0.1);border-color:var(--lavender);">🪄 Begin the Sorting Ceremony</button>
+    </div>
+    <div class="quiz-result" id="quiz-result">
+      <div class="house-name" id="house-name"></div>
+      <div class="house-desc" id="house-desc"></div>
+      <button class="game-start-btn" onclick="startQuiz()" style="margin-top:1.5rem;background:linear-gradient(135deg,var(--rose),var(--lavender))">🔄 Sort Again</button>
+    </div>
+  </div>
+</section>
+
+<!-- COLOR MIXER -->
+<section id="mixer">
+  <h2 class="section-title">✦ Aura Colour Mixer ✦</h2>
+  <p class="section-sub">blend your mood into colour · find your magical aura</p>
+  <div class="glow-divider"></div>
+
+  <div class="mixer-container">
+    <div class="color-preview" id="color-preview">
+      <div class="color-preview-text" id="aura-name">✨ Your Aura ✨</div>
+    </div>
+    <div class="sliders-grid">
+      <div class="slider-row">
+        <label>🌙 MYSTERY</label>
+        <input type="range" id="sl-r" min="0" max="255" value="100">
+      </div>
+      <div class="slider-row">
+        <label>🌸 WARMTH</label>
+        <input type="range" id="sl-g" min="0" max="255" value="50">
+      </div>
+      <div class="slider-row">
+        <label>⚡ ENERGY</label>
+        <input type="range" id="sl-b" min="0" max="255" value="200">
+      </div>
+      <div class="slider-row">
+        <label>🔮 MAGIC INTENSITY</label>
+        <input type="range" id="sl-a" min="30" max="100" value="70">
+      </div>
+    </div>
+    <p style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;letter-spacing:1px;color:rgba(253,246,255,0.4);text-align:center;margin-bottom:1rem;">✦ SAVED PALETTES ✦</p>
+    <div class="palette-row" id="palette-row"></div>
+    <div style="text-align:center;margin-top:1.5rem;">
+      <button class="ctrl-btn" id="save-aura">💾 Save to Palette</button>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS ORBIT -->
+<section id="skills-section">
+  <h2 class="section-title">✦ Skill Constellation ✦</h2>
+  <p class="section-sub">hover to explore · watch the cosmos of knowledge</p>
+  <div class="glow-divider"></div>
+
+  <div class="orbit-container" id="orbit-container">
+    <div class="orbit-center">CHHAVI<br>✨</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-text">
+    crafted with 🪄 caffeine & curiosity · chhavi · mnit jaipur · 2026<br>
+    <span style="font-size:0.8rem;opacity:0.5;">"not all those who wander are lost — some are just debugging"</span>
+  </div>
+</footer>
+
+<script>
+// ─── LOADING ───
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const l = document.getElementById('loading');
+    l.style.opacity = '0';
+    setTimeout(() => l.style.display = 'none', 800);
+  }, 1500);
+});
+
+// ─── STARS ───
+const canvas = document.getElementById('stars-canvas');
+const ctx = canvas.getContext('2d');
+let stars = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  initStars();
+}
+
+function initStars() {
+  stars = Array.from({length: 180}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 1.5 + 0.3,
+    o: Math.random(),
+    speed: Math.random() * 0.5 + 0.1,
+    twinkle: Math.random() * Math.PI * 2
+  }));
+}
+
+function animStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    s.twinkle += s.speed * 0.05;
+    const alpha = 0.3 + 0.5 * Math.sin(s.twinkle);
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(animStars);
+}
+
+resizeCanvas();
+animStars();
+window.addEventListener('resize', resizeCanvas);
+
+// ─── CURSOR TRAIL ───
+const trailColors = ['#f4a7c3','#c9a7f4','#a7f4d4','#f4e4a7','#a7d4f4'];
+let trailDots = [];
+
+document.addEventListener('mousemove', e => {
+  const dot = document.createElement('div');
+  dot.className = 'trail-dot';
+  dot.style.cssText = `left:${e.clientX}px;top:${e.clientY}px;background:${trailColors[Math.floor(Math.random()*trailColors.length)]};opacity:0.7;transform:scale(1);`;
+  document.body.appendChild(dot);
+  setTimeout(() => {
+    dot.style.opacity = '0';
+    dot.style.transform = 'scale(0)';
+    setTimeout(() => dot.remove(), 300);
+  }, 100);
+});
+
+// ─── CLICK BURST ───
+const burstEmojis = ['✨','🌸','⭐','💜','🔮','🌙','⚡','🦋'];
+document.addEventListener('click', e => {
+  if (e.target.closest('button') || e.target.closest('#sticker-board') || e.target.closest('#game-canvas')) return;
+  const el = document.createElement('div');
+  el.className = 'click-burst';
+  el.textContent = burstEmojis[Math.floor(Math.random()*burstEmojis.length)];
+  el.style.cssText = `left:${e.clientX}px;top:${e.clientY}px;`;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 700);
+});
+
+// ─── FLOATING PARTICLES ───
+const particleEmojis = ['✨','🌸','⭐','🔮','🌙','💫','🦋','🌿','💜'];
+function spawnParticle() {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.textContent = particleEmojis[Math.floor(Math.random()*particleEmojis.length)];
+  p.style.left = Math.random() * 100 + 'vw';
+  p.style.animationDuration = (5 + Math.random() * 8) + 's';
+  p.style.animationDelay = (Math.random() * 3) + 's';
+  p.style.fontSize = (0.8 + Math.random() * 0.8) + 'rem';
+  document.body.appendChild(p);
+  setTimeout(() => p.remove(), 14000);
+}
+setInterval(spawnParticle, 1200);
+
+// ─── TYPEWRITER ───
+const phrases = [
+  'a machine learning engineer in the making',
+  'an open source contributor',
+  'a poet who speaks in Python',
+  'a GSSoC \'26 contributor',
+  'a builder of intelligent systems',
+  'a Ravenclaw at heart 🦅',
+  'a bug whisperer',
+  'a dreamer with a terminal open',
+  'C2C Club Coordinator at MNIT',
+  'an explorer of neural networks',
+  'someone who finds art in algorithms',
+  'Chhavi — always building, always learning ✨'
+];
+let phraseIdx = 0, charIdx = 0, deleting = false;
+const typedEl = document.getElementById('typed-text');
+
+function typeWriter() {
+  const current = phrases[phraseIdx];
+  if (!deleting) {
+    typedEl.textContent = current.slice(0, charIdx + 1);
+    charIdx++;
+    if (charIdx === current.length) {
+      deleting = true;
+      setTimeout(typeWriter, 2000);
+      return;
+    }
+  } else {
+    typedEl.textContent = current.slice(0, charIdx - 1);
+    charIdx--;
+    if (charIdx === 0) {
+      deleting = false;
+      phraseIdx = (phraseIdx + 1) % phrases.length;
+    }
+  }
+  setTimeout(typeWriter, deleting ? 40 : 65);
+}
+typeWriter();
+
+// ─── STICKER PLAYGROUND ───
+let activeEmoji = '✨';
+const board = document.getElementById('sticker-board');
+const hint = board.querySelector('.sticker-hint');
+
+document.querySelectorAll('.sticker-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.sticker-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeEmoji = btn.dataset.emoji;
+  });
+});
+
+board.addEventListener('click', e => {
+  if (e.target.classList.contains('draggable-sticker')) return;
+  hint.style.display = 'none';
+  const rect = board.getBoundingClientRect();
+  createSticker(activeEmoji, e.clientX - rect.left, e.clientY - rect.top);
+});
+
+function createSticker(emoji, x, y) {
+  const s = document.createElement('div');
+  s.className = 'draggable-sticker';
+  s.textContent = emoji;
+  s.style.left = (x - 16) + 'px';
+  s.style.top = (y - 16) + 'px';
+  board.appendChild(s);
+  makeDraggable(s);
+  s.addEventListener('dblclick', () => s.remove());
+}
+
+function makeDraggable(el) {
+  let ox, oy, dragging = false;
+  el.addEventListener('mousedown', e => {
+    e.stopPropagation();
+    dragging = true;
+    const rect = board.getBoundingClientRect();
+    ox = e.clientX - rect.left - parseInt(el.style.left);
+    oy = e.clientY - rect.top - parseInt(el.style.top);
+  });
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const rect = board.getBoundingClientRect();
+    let nx = e.clientX - rect.left - ox;
+    let ny = e.clientY - rect.top - oy;
+    nx = Math.max(0, Math.min(rect.width - 32, nx));
+    ny = Math.max(0, Math.min(rect.height - 32, ny));
+    el.style.left = nx + 'px';
+    el.style.top = ny + 'px';
+  });
+  document.addEventListener('mouseup', () => dragging = false);
+  // Touch support
+  el.addEventListener('touchstart', e => {
+    e.stopPropagation();
+    dragging = true;
+    const rect = board.getBoundingClientRect();
+    ox = e.touches[0].clientX - rect.left - parseInt(el.style.left);
+    oy = e.touches[0].clientY - rect.top - parseInt(el.style.top);
+  });
+  document.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    const rect = board.getBoundingClientRect();
+    let nx = e.touches[0].clientX - rect.left - ox;
+    let ny = e.touches[0].clientY - rect.top - oy;
+    el.style.left = Math.max(0, Math.min(rect.width-32, nx)) + 'px';
+    el.style.top = Math.max(0, Math.min(rect.height-32, ny)) + 'px';
+  });
+  document.addEventListener('touchend', () => dragging = false);
+}
+
+document.getElementById('clear-board').addEventListener('click', () => {
+  board.querySelectorAll('.draggable-sticker').forEach(s => s.remove());
+  hint.style.display = 'block';
+});
+
+const allEmojis = ['✨','🦋','🌙','⭐','🪄','🔮','🌸','💻','🐍','🧠','🌿','💜','🦉','📖','⚡'];
+document.getElementById('random-fill').addEventListener('click', () => {
+  hint.style.display = 'none';
+  const rect = board.getBoundingClientRect();
+  for (let i = 0; i < 15; i++) {
+    setTimeout(() => {
+      createSticker(
+        allEmojis[Math.floor(Math.random()*allEmojis.length)],
+        30 + Math.random() * (rect.width - 60),
+        30 + Math.random() * (rect.height - 60)
+      );
+    }, i * 80);
+  }
+});
+
+document.getElementById('save-board').addEventListener('click', () => {
+  alert('💜 Screenshot shortcut: press Ctrl+Shift+S or use your OS screenshot tool to save your magical board!');
+});
+
+// ─── SPELL GENERATOR ───
+const spells = {
+  code: [
+    "Debuggificarum! — let the bug reveal itself to thy searching eyes",
+    "Loopus Infinitum! — may your recursion always find its base case",
+    "Commitius Maximus! — this PR shall be approved by sundown",
+    "Pythonicus! — snake magic flows through your terminal",
+    "Mergius Conflictus Solvus! — all merge conflicts dissolved at once",
+    "Pip Installus! — the package appears, the dependency resolved",
+    "Pytest Passimus! — all tests go green, the CI pipeline sings",
+    "Stackoverflowus Answereth! — the solution was there all along"
+  ],
+  life: [
+    "Sleepus Sufficientus! — may you rest before the 3am commit",
+    "Chaiis Perfectum! — the perfect cup, brewed to golden warmth",
+    "Deadlinicus Extendus! — time bends gently in your favour",
+    "Focusus Maximus! — the world quiets and only your work remains",
+    "Confidentiam! — you know more than you think you do",
+    "Joyous Instantius! — a small victory appears without warning",
+    "Restorus Animae! — your creative spirit refills like moonlight",
+    "Fortuna Arrives! — something wonderful is already on its way"
+  ],
+  hp: [
+    "Lumos Technica! — your screen brightens the darkest debugging night",
+    "Alohomora Repository! — the codebase opens its secrets to you",
+    "Expecto Patronum Compilationem! — ward off the errors that haunt you",
+    "Accio Documentation! — the README appears, actually helpful",
+    "Wingardium Leviosa Deploy! — your app lifts gracefully to the cloud",
+    "Riddikulus Bug! — the error transforms from terrifying to silly",
+    "Finite Incantatem Procrastinus! — the procrastination lifts at once",
+    "Oculus Reparo Syntax! — the missing semicolon reveals itself"
+  ],
+  affirmation: [
+    "You are the kind of coder who makes machines dream in colour ✨",
+    "Every bug you fix is a spell successfully cast 🪄",
+    "The compiler doesn't define you — your curiosity does 🌙",
+    "You are exactly as brilliant as you are on your quietest days 💜",
+    "Your first-year code will one day mentor someone else's beginnings 🌸",
+    "The intersection of poetry and Python — that's where you live 📖",
+    "You belong in every room you've ever doubted entering ⚡",
+    "Keep building. The world needs your particular kind of magic 🔮"
+  ]
+};
+
+let activeSpellType = 'code';
+document.querySelectorAll('.spell-type-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.spell-type-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeSpellType = btn.dataset.type;
+  });
+});
+
+document.getElementById('cast-spell').addEventListener('click', () => {
+  const arr = spells[activeSpellType];
+  const spell = arr[Math.floor(Math.random() * arr.length)];
+  const el = document.getElementById('spell-display');
+  el.style.opacity = '0'; el.style.transform = 'scale(0.95)';
+  setTimeout(() => {
+    el.textContent = spell;
+    el.style.opacity = '1'; el.style.transform = 'scale(1)';
+  }, 300);
+  for (let i = 0; i < 5; i++) {
+    setTimeout(() => {
+      const b = document.createElement('div');
+      b.className = 'click-burst';
+      b.textContent = ['✨','⭐','🪄','💜','🌙'][Math.floor(Math.random()*5)];
+      b.style.cssText = `left:${Math.random()*window.innerWidth}px;top:${Math.random()*window.innerHeight}px;`;
+      document.body.appendChild(b);
+      setTimeout(() => b.remove(), 700);
+    }, i * 100);
+  }
+});
+
+// ─── POEM GENERATOR ───
+const poemTemplates = [
+  (w) => `in the hush of ${w},\nlines of code begin to breathe —\nthe stars compile.`,
+  (w) => `${w} arrives at dusk,\nunannounced, wearing starlight —\nI name it home.`,
+  (w) => `she typed "${w}"\nand the universe responded\nwith a pull request.`,
+  (w) => `${w} is a function\nthat takes nothing, returns\neverything at once.`,
+  (w) => `between ${w} and dawn\nlives the recursion we call hope —\nno base case found.`,
+  (w) => `I am ${w},\nlooped through every version of myself\ntil I finally compiled.`,
+  (w) => `her wand is made of ${w}\nand terminal commands —\nboth equally magic.`,
+  (w) => `${w}: a variable\nuntyped, undefined, yet —\nperfect as it is.`,
+];
+
+document.getElementById('gen-poem').addEventListener('click', generatePoem);
+document.getElementById('poem-input').addEventListener('keydown', e => { if(e.key==='Enter') generatePoem(); });
+
+function generatePoem() {
+  const word = document.getElementById('poem-input').value.trim() || 'magic';
+  const template = poemTemplates[Math.floor(Math.random() * poemTemplates.length)];
+  const poem = template(word);
+  const el = document.getElementById('poem-output');
+  el.style.opacity = '0';
+  setTimeout(() => {
+    el.innerHTML = poem.split('\n').map(l => `<div>${l}</div>`).join('');
+    el.style.opacity = '1';
+  }, 300);
+}
+
+// ─── STAR CATCH GAME ───
+const gc = document.getElementById('game-canvas');
+const gctx = gc.getContext('2d');
+let gameRunning = false, score = 0, bestScore = 0, timeLeft = 30, gameTimer;
+let stars2 = [];
+
+function initGame() {
+  score = 0; timeLeft = 30; stars2 = [];
+  document.getElementById('score').textContent = 0;
+  document.getElementById('timer').textContent = 30;
+  gameRunning = true;
+  clearInterval(gameTimer);
+  gameTimer = setInterval(() => {
+    timeLeft--;
+    document.getElementById('timer').textContent = timeLeft;
+    if (timeLeft <= 0) endGame();
+  }, 1000);
+  spawnStars();
+  drawGame();
+}
+
+function spawnStars() {
+  if (!gameRunning) return;
+  const emojis2 = ['⭐','✨','💫','🌟','⚡'];
+  stars2.push({
+    x: 30 + Math.random() * (gc.width - 60),
+    y: -30,
+    vy: 1.5 + Math.random() * 2.5,
+    size: 24 + Math.random() * 16,
+    emoji: emojis2[Math.floor(Math.random()*emojis2.length)],
+    hit: false, alpha: 1
+  });
+  setTimeout(spawnStars, 600 + Math.random() * 600);
+}
+
+function drawGame() {
+  if (!gameRunning && timeLeft > 0) return;
+  gctx.clearRect(0, 0, gc.width, gc.height);
+
+  // bg
+  gctx.fillStyle = 'rgba(26,10,46,0.95)';
+  gctx.fillRect(0, 0, gc.width, gc.height);
+
+  // grid dots
+  for (let x=30;x<gc.width;x+=40)
+    for (let y=30;y<gc.height;y+=40) {
+      gctx.beginPath();
+      gctx.arc(x,y,1,0,Math.PI*2);
+      gctx.fillStyle='rgba(255,255,255,0.05)';
+      gctx.fill();
+    }
+
+  stars2 = stars2.filter(s => s.y < gc.height + 40 && s.alpha > 0);
+
+  stars2.forEach(s => {
+    if (!s.hit) s.y += s.vy;
+    else s.alpha -= 0.08;
+    gctx.globalAlpha = s.alpha;
+    gctx.font = s.size + 'px serif';
+    gctx.textAlign = 'center';
+    gctx.fillText(s.emoji, s.x, s.y);
+    gctx.globalAlpha = 1;
+  });
+
+  // score display
+  gctx.font = 'bold 18px "JetBrains Mono"';
+  gctx.fillStyle = 'rgba(167,244,212,0.8)';
+  gctx.textAlign = 'left';
+  gctx.fillText('✦ ' + score, 15, 30);
+
+  if (gameRunning) requestAnimationFrame(drawGame);
+}
+
+gc.addEventListener('click', e => {
+  if (!gameRunning) return;
+  const rect = gc.getBoundingClientRect();
+  const scaleX = gc.width / rect.width;
+  const scaleY = gc.height / rect.height;
+  const mx = (e.clientX - rect.left) * scaleX;
+  const my = (e.clientY - rect.top) * scaleY;
+
+  stars2.forEach(s => {
+    if (s.hit) return;
+    const d = Math.hypot(mx - s.x, my - s.y);
+    if (d < s.size) {
+      s.hit = true;
+      score++;
+      document.getElementById('score').textContent = score;
+      if (score > bestScore) { bestScore = score; document.getElementById('best').textContent = bestScore; }
+    }
+  });
+});
+
+function endGame() {
+  gameRunning = false;
+  clearInterval(gameTimer);
+  gctx.clearRect(0,0,gc.width,gc.height);
+  gctx.fillStyle='rgba(26,10,46,0.97)';
+  gctx.fillRect(0,0,gc.width,gc.height);
+  gctx.font='bold 28px "Cinzel Decorative"';
+  gctx.fillStyle='#c9a7f4';
+  gctx.textAlign='center';
+  gctx.fillText('Game Over!', gc.width/2, gc.height/2 - 40);
+  gctx.font='20px "JetBrains Mono"';
+  gctx.fillStyle='#a7f4d4';
+  gctx.fillText('Score: ' + score, gc.width/2, gc.height/2 + 5);
+  gctx.font='14px "IM Fell English"';
+  gctx.fillStyle='rgba(253,246,255,0.5)';
+  gctx.fillText(score > 10 ? '"You are destined for greatness!" — The Hat' : '"Keep practising, young witch." — The Hat', gc.width/2, gc.height/2 + 45);
+}
+
+// idle state
+gctx.fillStyle='rgba(26,10,46,0.95)'; gctx.fillRect(0,0,gc.width,gc.height);
+gctx.font='40px serif'; gctx.textAlign='center';
+gctx.fillText('🌟', gc.width/2, gc.height/2 - 10);
+gctx.font='14px "JetBrains Mono"'; gctx.fillStyle='rgba(253,246,255,0.4)';
+gctx.fillText('press Start Game to begin', gc.width/2, gc.height/2 + 30);
+
+document.getElementById('start-game').addEventListener('click', initGame);
+
+// ─── HOUSE QUIZ ───
+const questions = [
+  { q: "You find a forbidden book in the library. You:", opts: [
+    {t:"Read it immediately, knowledge is knowledge",h:"Ravenclaw"},
+    {t:"Follow the rules and report it",h:"Hufflepuff"},
+    {t:"Use it to gain an advantage",h:"Slytherin"},
+    {t:"Share it with your whole friend group",h:"Gryffindor"}
+  ]},
+  { q: "At 3am before a big exam, you are:", opts: [
+    {t:"Still studying, one more chapter",h:"Ravenclaw"},
+    {t:"Helping your friends study",h:"Hufflepuff"},
+    {t:"Planning your optimal strategy",h:"Slytherin"},
+    {t:"Asleep — you'll wing it",h:"Gryffindor"}
+  ]},
+  { q: "Your code has a critical bug in production. You:", opts: [
+    {t:"Debug systematically until you find it",h:"Ravenclaw"},
+    {t:"Ask the team for help immediately",h:"Hufflepuff"},
+    {t:"Have already pushed a hotfix",h:"Slytherin"},
+    {t:"Boldly rollback and face the consequences",h:"Gryffindor"}
+  ]},
+  { q: "Which describes your ideal project?", opts: [
+    {t:"Elegant, well-documented, solves a deep problem",h:"Ravenclaw"},
+    {t:"Helps as many people as possible",h:"Hufflepuff"},
+    {t:"Impressive, ambitious, career-defining",h:"Slytherin"},
+    {t:"Wild, experimental, never been done before",h:"Gryffindor"}
+  ]},
+  { q: "Your deepest fear is:", opts: [
+    {t:"Being wrong and not knowing it",h:"Ravenclaw"},
+    {t:"Letting someone down",h:"Hufflepuff"},
+    {t:"Failing to reach your potential",h:"Slytherin"},
+    {t:"Living without ever taking a risk",h:"Gryffindor"}
+  ]}
+];
+
+const houseData = {
+  Ravenclaw: {
+    color: '#a7d4f4',
+    emoji: '🦅',
+    desc: 'Wit beyond measure is your greatest treasure. You are a scholar, a seeker of truth, a debugger of the universe. Your code is elegant. Your questions are sharp. The library knows your name.'
+  },
+  Hufflepuff: {
+    color: '#f4e4a7',
+    emoji: '🦡',
+    desc: 'Patient, loyal, and quietly extraordinary. You build things that last because you care about the people using them. You are the teammate everyone deserves and rarely finds.'
+  },
+  Slytherin: {
+    color: '#a7f4d4',
+    emoji: '🐍',
+    desc: 'Ambitious, resourceful, and utterly determined. You set goals others wouldn\'t dare to and you reach them. Your Python is elegant. Your vision is strategic. The world underestimates you at its own risk.'
+  },
+  Gryffindor: {
+    color: '#f4a7c3',
+    emoji: '🦁',
+    desc: 'Brave, bold, and brilliantly reckless. You open issues, submit PRs, and ask questions in class without waiting for permission. You make things happen. You are the spark.'
+  }
+};
+
+let qIdx = 0, houseVotes = {Ravenclaw:0,Hufflepuff:0,Slytherin:0,Gryffindor:0};
+
+function startQuiz() {
+  qIdx = 0;
+  houseVotes = {Ravenclaw:0,Hufflepuff:0,Slytherin:0,Gryffindor:0};
+  document.getElementById('quiz-result').style.display = 'none';
+  showQuestion();
+}
+
+function showQuestion() {
+  if (qIdx >= questions.length) { showResult(); return; }
+  const q = questions[qIdx];
+  document.getElementById('quiz-progress').textContent = `QUESTION ${qIdx+1} OF ${questions.length}`;
+  const qq = document.getElementById('quiz-question');
+  qq.style.opacity = '0';
+  setTimeout(() => { qq.textContent = q.q; qq.style.opacity = '1'; }, 200);
+
+  const opts = document.getElementById('quiz-options');
+  opts.innerHTML = '';
+  q.opts.forEach(o => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = o.t;
+    btn.addEventListener('click', () => {
+      houseVotes[o.h]++;
+      qIdx++;
+      showQuestion();
+    });
+    opts.appendChild(btn);
+  });
+}
+
+function showResult() {
+  const house = Object.entries(houseVotes).sort((a,b)=>b[1]-a[1])[0][0];
+  const data = houseData[house];
+  document.getElementById('quiz-options').innerHTML = '';
+  document.getElementById('quiz-question').textContent = '';
+  document.getElementById('quiz-progress').textContent = '';
+  const res = document.getElementById('quiz-result');
+  res.style.display = 'block';
+  res.style.borderColor = data.color;
+  document.getElementById('house-name').textContent = data.emoji + ' ' + house;
+  document.getElementById('house-name').style.color = data.color;
+  document.getElementById('house-desc').textContent = data.desc;
+}
+
+// ─── COLOUR MIXER ───
+const slR = document.getElementById('sl-r');
+const slG = document.getElementById('sl-g');
+const slB = document.getElementById('sl-b');
+const slA = document.getElementById('sl-a');
+const preview = document.getElementById('color-preview');
+const auraName = document.getElementById('aura-name');
+
+const auraNames = [
+  [0,80,'Midnight Prophet'],[80,150,'Dusk Coder'],[150,220,'Storm Weaver'],[220,255,'Electric Sage']
+];
+
+function getAuraName(r,g,b) {
+  const max = Math.max(r,g,b);
+  if (r===max && r>180) return '🌸 Rose Witch';
+  if (g===max && g>180) return '🌿 Forest Sage';
+  if (b===max && b>180) return '🔮 Indigo Scholar';
+  if (r>150&&g>150) return '✨ Golden Dreamer';
+  if (r>150&&b>150) return '💜 Violet Storm';
+  if (g>150&&b>150) return '🌊 Teal Mystic';
+  if (r<80&&g<80&&b<80) return '🌑 Void Walker';
+  return '🌟 Astral Being';
+}
+
+function updateColor() {
+  const r=slR.value,g=slG.value,b=slB.value,a=slA.value/100;
+  preview.style.background = `rgba(${r},${g},${b},${a})`;
+  preview.style.boxShadow = `0 0 60px rgba(${r},${g},${b},0.4)`;
+  slR.style.background = `linear-gradient(90deg,#1a0a2e,rgb(${r},0,0))`;
+  slG.style.background = `linear-gradient(90deg,#1a0a2e,rgb(0,${g},0))`;
+  slB.style.background = `linear-gradient(90deg,#1a0a2e,rgb(0,0,${b}))`;
+  slA.style.background = `linear-gradient(90deg,rgba(${r},${g},${b},0),rgba(${r},${g},${b},1))`;
+  auraName.textContent = getAuraName(+r,+g,+b);
+}
+
+[slR,slG,slB,slA].forEach(s => s.addEventListener('input', updateColor));
+updateColor();
+
+const palette = document.getElementById('palette-row');
+document.getElementById('save-aura').addEventListener('click', () => {
+  const r=slR.value,g=slG.value,b=slB.value,a=slA.value/100;
+  const sw = document.createElement('div');
+  sw.className = 'palette-swatch';
+  sw.style.background = `rgba(${r},${g},${b},${a})`;
+  sw.title = getAuraName(+r,+g,+b);
+  sw.addEventListener('click', () => {
+    slR.value=r; slG.value=g; slB.value=b; slA.value=a*100; updateColor();
+  });
+  palette.appendChild(sw);
+});
+
+// ─── SKILLS ORBIT ───
+const skills = [
+  {icon:'🐍',label:'Python',r:80,speed:0.008},
+  {icon:'🧠',label:'ML/AI',r:80,speed:0.008},
+  {icon:'⚛️',label:'React',r:140,speed:0.005},
+  {icon:'🔢',label:'NumPy',r:140,speed:0.005},
+  {icon:'📊',label:'Pandas',r:140,speed:0.005},
+  {icon:'👁️',label:'OpenCV',r:200,speed:0.003},
+  {icon:'🌐',label:'Flask',r:200,speed:0.003},
+  {icon:'📦',label:'GitHub',r:200,speed:0.003},
+  {icon:'⚡',label:'GSSoC',r:200,speed:0.003},
+  {icon:'🔮',label:'Agents',r:270,speed:0.002},
+  {icon:'💻',label:'C++',r:270,speed:0.002},
+  {icon:'🛠️',label:'VS Code',r:270,speed:0.002},
+];
+
+const container = document.getElementById('orbit-container');
+const cx = 200, cy = 200;
+
+// Draw orbit rings
+[80,140,200,270].forEach(r => {
+  const ring = document.createElement('div');
+  ring.className = 'orbit-ring';
+  ring.style.cssText = `width:${r*2}px;height:${r*2}px;margin-left:${-r}px;margin-top:${-r}px;`;
+  container.appendChild(ring);
+});
+
+// Create skill items
+const angles = {};
+const countPerRing = {};
+skills.forEach(s => {
+  if(!countPerRing[s.r]) countPerRing[s.r] = 0;
+  countPerRing[s.r]++;
+});
+const idxPerRing = {};
+skills.forEach(s => {
+  if(!idxPerRing[s.r]) idxPerRing[s.r] = 0;
+  const total = countPerRing[s.r];
+  angles[s.label] = (idxPerRing[s.r] / total) * Math.PI * 2;
+  idxPerRing[s.r]++;
+
+  const el = document.createElement('div');
+  el.className = 'orbit-item';
+  el.innerHTML = `<div class="orbit-icon">${s.icon}</div><div class="orbit-label">${s.label}</div>`;
+  el.style.position = 'absolute';
+  container.appendChild(el);
+  s.el = el;
+  s.angle = angles[s.label];
+});
+
+function animOrbit() {
+  skills.forEach(s => {
+    s.angle += s.speed;
+    const x = cx + s.r * Math.cos(s.angle) - 20;
+    const y = cy + s.r * Math.sin(s.angle) - 20;
+    s.el.style.left = x + 'px';
+    s.el.style.top = y + 'px';
+  });
+  requestAnimationFrame(animOrbit);
+}
+animOrbit();
+</script>
+</body>
+</html>
